@@ -1,0 +1,1 @@
+Map<__std_iter::adapters::zip::Zip<vec::into_iter::IntoIter<usize>, vec::into_iter::IntoIter<usize>>, {closure@day-01/src/part1.rs:17:41: 17:49}>
