@@ -2,11 +2,9 @@ name: Rust Tests
 
 on:
  push:
-   paths:
-     - '2024/rust/**'
+   branches: ['*']
  pull_request:
-   paths:
-     - '2024/rust/**'
+   branches: ['*']
 
 jobs:
  test:
