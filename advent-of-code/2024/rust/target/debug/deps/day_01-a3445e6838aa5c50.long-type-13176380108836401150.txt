@@ -1,1 +1,0 @@
-Map<__std_iter::adapters::zip::Zip<vec::into_iter::IntoIter<i32>, vec::into_iter::IntoIter<i32>>, {closure@day-01/src/part1.rs:15:41: 15:49}>
