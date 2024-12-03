@@ -15,31 +15,18 @@ pub fn combinations_without_replacement(levels: &[u32]) -> miette::Result<Vec<Ve
 
 #[tracing::instrument]
 pub fn process(_input: &str) -> miette::Result<String> {
-    let mut safe_reports: u32 = 0;
-    let parsed_levels: Vec<Vec<u32>> = _input
+    Ok(_input
         .lines()
-        .map(|levels| {
-            levels
-                .split_whitespace()
-                .map(|level| level.parse::<u32>().unwrap())
-                .collect()
-        })
-        .collect();
-    for levels in parsed_levels.iter() {
-        let is_safe = safe_level(levels)?;
-        if is_safe {
-            safe_reports += 1
-        } else {
-            let combinations = combinations_without_replacement(levels)?;
-            if combinations
-                .iter()
-                .any(|combination| safe_level(combination).unwrap_or(false))
-            {
-                safe_reports += 1
+        .map(|line| {
+            let mut numbers = Vec::with_capacity(5);
+            for num in line.split_whitespace() {
+                numbers.push(num.parse::<u32>().unwrap());
             }
-        }
-    }
-    Ok(safe_reports.to_string())
+            safe_level(&numbers)
+        })
+        .filter(|result| result.as_ref().map_or(false, |&x| x))
+        .count()
+        .to_string())
 }
 
 #[cfg(test)]

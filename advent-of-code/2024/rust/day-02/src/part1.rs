@@ -1,6 +1,6 @@
 pub fn safe_level(levels: &[u32]) -> miette::Result<bool> {
-    let is_monotonic = check_monotonicity(levels)?;
-    let is_difference_in_range = check_adjacent_levels_difference(levels)?;
+    let is_monotonic = check_monotonicity(&levels)?;
+    let is_difference_in_range = check_adjacent_levels_difference(&levels)?;
     let is_safe = is_monotonic && is_difference_in_range;
     Ok(is_safe)
 }
@@ -30,7 +30,7 @@ pub fn process(_input: &str) -> miette::Result<String> {
         })
         .collect();
     for levels in parsed_levels.iter() {
-        let is_safe = safe_level(levels)?;
+        let is_safe = safe_level(&levels)?;
         if is_safe {
             safe_reports += 1
         }
