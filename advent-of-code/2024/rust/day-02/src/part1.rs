@@ -1,19 +1,19 @@
-pub fn safe_level(levels: &Vec<u32>) -> miette::Result<bool> {
+pub fn safe_level(levels: &[u32]) -> miette::Result<bool> {
     let is_monotonic = check_monotonicity(levels)?;
     let is_difference_in_range = check_adjacent_levels_difference(levels)?;
     let is_safe = is_monotonic && is_difference_in_range;
     Ok(is_safe)
 }
 
-pub fn check_monotonicity(levels: &Vec<u32>) -> miette::Result<bool> {
+pub fn check_monotonicity(levels: &[u32]) -> miette::Result<bool> {
     Ok(levels.windows(2).all(|pair| pair[0] <= pair[1])
         || levels.windows(2).all(|pair| pair[0] >= pair[1]))
 }
 
-pub fn check_adjacent_levels_difference(levels: &Vec<u32>) -> miette::Result<bool> {
+pub fn check_adjacent_levels_difference(levels: &[u32]) -> miette::Result<bool> {
     Ok(levels.windows(2).all(|pair| {
         let diff = pair[0].abs_diff(pair[1]);
-        1 <= diff && diff <= 3
+        (1..4).contains(&diff)
     }))
 }
 

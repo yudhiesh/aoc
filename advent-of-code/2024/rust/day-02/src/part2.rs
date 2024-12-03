@@ -1,6 +1,6 @@
 use super::part1::*;
 
-pub fn combinations_without_replacement(levels: &Vec<u32>) -> miette::Result<Vec<Vec<u32>>> {
+pub fn combinations_without_replacement(levels: &[u32]) -> miette::Result<Vec<Vec<u32>>> {
     Ok((0..levels.len())
         .map(|i| {
             levels
