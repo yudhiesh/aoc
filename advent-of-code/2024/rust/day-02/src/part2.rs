@@ -1,12 +1,5 @@
 use super::part1::*;
 
-pub fn safe_level(levels: &Vec<u32>) -> miette::Result<bool> {
-    let is_monotonic = check_monotonicity(levels)?;
-    let is_difference_in_range = check_adjacent_levels_difference(levels)?;
-    let is_safe = is_monotonic && is_difference_in_range;
-    Ok(is_safe)
-}
-
 pub fn combinations_without_replacement(levels: &Vec<u32>) -> miette::Result<Vec<Vec<u32>>> {
     Ok((0..levels.len())
         .map(|i| {
