@@ -26,6 +26,5 @@ Cargo.lock
 .vscode
 target
 main
-input*.txt
 .envrc
 .env
