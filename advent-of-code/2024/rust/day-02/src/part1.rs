@@ -1,3 +1,4 @@
+#[tracing::instrument(ret)]
 pub fn safe_level(levels: &[u32]) -> miette::Result<bool> {
     let is_monotonic = check_monotonicity(&levels)?;
     let is_difference_in_range = check_adjacent_levels_difference(&levels)?;
@@ -5,11 +6,13 @@ pub fn safe_level(levels: &[u32]) -> miette::Result<bool> {
     Ok(is_safe)
 }
 
+#[tracing::instrument(ret)]
 pub fn check_monotonicity(levels: &[u32]) -> miette::Result<bool> {
     Ok(levels.windows(2).all(|pair| pair[0] <= pair[1])
         || levels.windows(2).all(|pair| pair[0] >= pair[1]))
 }
 
+#[tracing::instrument(ret)]
 pub fn check_adjacent_levels_difference(levels: &[u32]) -> miette::Result<bool> {
     Ok(levels.windows(2).all(|pair| {
         let diff = pair[0].abs_diff(pair[1]);
@@ -17,10 +20,10 @@ pub fn check_adjacent_levels_difference(levels: &[u32]) -> miette::Result<bool> 
     }))
 }
 
-#[tracing::instrument]
-pub fn process(_input: &str) -> miette::Result<String> {
+#[tracing::instrument(ret, skip(input))]
+pub fn process(input: &str) -> miette::Result<String> {
     let mut safe_reports: u32 = 0;
-    let parsed_levels: Vec<Vec<u32>> = _input
+    let parsed_levels: Vec<Vec<u32>> = input
         .lines()
         .map(|levels| {
             levels
