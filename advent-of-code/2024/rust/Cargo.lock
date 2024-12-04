@@ -140,8 +140,10 @@ version = "0.1.0"
 dependencies = [
  "divan",
  "itertools",
+ "lazy_static",
  "miette",
  "nom",
+ "regex",
  "rstest",
  "test-log",
  "tracing",
