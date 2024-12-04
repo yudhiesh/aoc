@@ -1,5 +1,4 @@
 #!/usr/bin/env -S cargo +nightly -Zscript
-/// macOS #!/usr/bin/env rustup run nightly cargo -Zscript
 ---cargo
 [package]
 edition = "2021"
